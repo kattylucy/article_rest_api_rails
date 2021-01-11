@@ -30,6 +30,19 @@ RSpec.describe Article, type: :model do
       invalid_article = build :article, slug: article.slug
       expect(invalid_article).not_to be_valid  
     end
+  end
 
+  describe '.recent' do
+    it ('should list recent article first') do 
+      old_article = create :article
+      new_article = create :article
+      expect(described_class.recent).to  eq(
+        [new_article, old_article]
+      )
+      old_article.update_column :create_at, Time.now
+      expect(described_class.recent).to  eq(
+        [old_article, new_article]
+      )
+    end
   end
 end
