@@ -2,16 +2,15 @@ require 'rails_helper'
 
 describe ArticlesController do
     describe '#index' do
+        subject { get :index}
         it 'should return success response' do 
-            get :index
+            subject 
             expect(response).to have_http_status(:success)  
         end
 
         it 'should return proper json' do 
             articles = create_list :article, 2
-            get :index
-            json = JSON.parse(response.body)
-            json_data = json['data']
+            subject  
             expect(json_data.length).to eq(2)
             articles.each_with_index do |article ,index|
                 expect(json_data[index]['attributes']).to eq({
