@@ -19,6 +19,7 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
 module PracticeApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -37,4 +38,7 @@ module PracticeApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
   end
+
 end
+
+
